@@ -220,7 +220,7 @@ def pipeline_produtos() -> None:
         if produto['product_category_name'] == 'sem categoria':
             total_categoria_corrigida += 1
 
-        # 5b. Converte colunas numéricas de string → float para validação.
+        # Converte colunas numéricas de string → float para validação.
         #     vazio() mantém os valores como string (lidos do CSV);
         #     precisamos de float para comparar com 0.
         for col in COLUNAS_NUMERICAS:
@@ -232,7 +232,7 @@ def pipeline_produtos() -> None:
                     # Valor não é numérico (ex: texto corrompido) → usa média
                     produto[col] = medias.get(col)
 
-        # 5c. Valida dimensões físicas: valor ≤ 0 é fisicamente impossível.
+        # Valida dimensões físicas: valor ≤ 0 é fisicamente impossível.
         #     Um produto não pode ter peso zero ou altura negativa —
         #     esses valores indicam erro de cadastro, não ausência de dado.
         #     Substituímos pela média da coluna (mesma estratégia dos nulos).
@@ -243,7 +243,7 @@ def pipeline_produtos() -> None:
                 produto[col] = medias.get(col)  # Substitui pela média
                 total_dimensao_corrigida += 1   # Conta para o relatório
 
-        # 5d. Garante que product_photos_qty seja inteiro (não float)
+        # Garante que product_photos_qty seja inteiro (não float)
         #     O CSV grava '3.0' quando lido como float; convertemos para int
         qty = produto.get('product_photos_qty')
         if qty is not None:
