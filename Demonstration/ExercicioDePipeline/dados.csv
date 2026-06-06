@@ -1,0 +1,7 @@
+Id,Nome,Data_Nascimento,Número,Email,Renda
+1,Ana,1995-06-15,123456789,ana@email.com,R$5000
+2,Bruno,1989-03-22,987654321,bruno@email.com,R$6000
+3,Melissa,2001-12-08,555555555,melissa@email.com,R$7000
+4,Carlos,1978-09-30,111111111,carlos@email.com,R$8000
+5,Fernanda,1992-07-14,222222222,fernanda@email.com,R$9000
+6,Caio,,333333333,caio@email.com,R$10000
