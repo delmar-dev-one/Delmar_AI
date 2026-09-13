@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    background-color: #000000;
+}
+
+header {
+    background: #000000;
+    color: rgb(250, 249, 252);
+    padding: 15px 0;
+}
+
+header h1 {
+    display: inline;
+}
+
+nav {
+    float: right;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background: #000000;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #744fcc;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.section {
+    padding: 60px 0;
+    background-color: #000000;
+}
+
+.bg-light {
+    background-color: #000000;
+}
+  
+
+.card {
+    background: #744fcc;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+footer {
+    background: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+#formacao #tecnicas {
+    background: #000000;
+    background-color: #000000;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid ;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#formacao #p {
+    margin: 5px 0;
+    font-size: 16px;
+    padding-left: 50px;
+    margin-left: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
