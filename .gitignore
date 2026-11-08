@@ -9,3 +9,5 @@ venv/
 *.log
 data/
 
+.venv/
+.venv-merge/
