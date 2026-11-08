@@ -1,0 +1,130 @@
+{
+  "info": {
+    "_postman_id": "d4b50c6e-4a55-4b3d-8c61-5f91f09f33a2",
+    "name": "AgroVisionAI - API REST",
+    "description": "Testes dos endpoints de classificação de folhas e detecção de frutos.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "modelo",
+      "value": "v8"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('status healthy', () => pm.expect(pm.response.json().status).to.eql('healthy'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Classificar folha",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/classificar-folha",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "classificar-folha"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('retorna classe e confiança', () => { const d=pm.response.json(); pm.expect(d).to.have.property('classe'); pm.expect(d.confianca).to.be.a('number'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Detectar frutos - modelo selecionável",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/detectar-fruto?modelo={{modelo}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "detectar-fruto"
+          ],
+          "query": [
+            {
+              "key": "modelo",
+              "value": "{{modelo}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('retorna lista de detecções', () => { const d=pm.response.json(); pm.expect(d).to.have.property('deteccoes'); pm.expect(d.deteccoes).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
