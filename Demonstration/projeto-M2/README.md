@@ -4,7 +4,7 @@ Entrega corrigida baseada no notebook `modelo_m2_final`.
 
 ## Estrutura
 
-- `model(1)(1).ipynb`: notebook com CNN, EDA, divisão estratificada, avaliação e pipeline de treino/validação dos três YOLO.
+- `AgroVisionAI_Modulo2_Final.ipynb`: notebook com CNN, EDA, divisão estratificada, avaliação e pipeline de treino/validação dos três YOLO.
 - `api.py`: API REST com `/classificar-folha`, `/detectar-fruto?modelo=v8|v9|v11` e `/health`.
 - `AgroVisionAI_Postman_Collection.json`: coleção importável no Postman.
 - `requirements.txt`: dependências.
