@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "b8a64f9d-52a2-4c38-9b3f-2f1b7a8d9e10",
+    "name": "AgroVisionAI - Testes de API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('API saudável', () => pm.expect(pm.response.json().status).to.eql('healthy'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Classificar folha",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/classificar-folha",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('classe e confiança', () => { const d=pm.response.json(); pm.expect(d.classe).to.be.a('string'); pm.expect(d.confianca).to.be.a('number'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Detectar frutos V8",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/detectar-fruto?modelo=v8",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('modelo v8', () => pm.expect(pm.response.json().modelo).to.eql('v8'));",
+              "pm.test('deteccoes é lista', () => pm.expect(pm.response.json().deteccoes).to.be.an('array'));",
+              "pm.test('bbox possui coordenadas', () => pm.response.json().deteccoes.forEach(d => { pm.expect(d.bbox).to.have.all.keys('x1','y1','x2','y2'); }));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Detectar frutos V9",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/detectar-fruto?modelo=v9",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('modelo v9', () => pm.expect(pm.response.json().modelo).to.eql('v9'));",
+              "pm.test('deteccoes é lista', () => pm.expect(pm.response.json().deteccoes).to.be.an('array'));",
+              "pm.test('bbox possui coordenadas', () => pm.response.json().deteccoes.forEach(d => { pm.expect(d.bbox).to.have.all.keys('x1','y1','x2','y2'); }));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Detectar frutos V11",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/detectar-fruto?modelo=v11",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('modelo v11', () => pm.expect(pm.response.json().modelo).to.eql('v11'));",
+              "pm.test('deteccoes é lista', () => pm.expect(pm.response.json().deteccoes).to.be.an('array'));",
+              "pm.test('bbox possui coordenadas', () => pm.response.json().deteccoes.forEach(d => { pm.expect(d.bbox).to.have.all.keys('x1','y1','x2','y2'); }));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
