@@ -1,11 +1,3 @@
-"""
-AgroVisionAI - API REST
-Endpoints:
-  POST /classificar-folha
-  POST /detectar-fruto?modelo=v8|v9|v11
-  GET  /health
-Os pesos devem estar em ./models/ e o modelo CNN em ./models/modelo_folhas.keras.
-"""
 import json
 import os
 from contextlib import asynccontextmanager
@@ -20,8 +12,8 @@ from fastapi.responses import JSONResponse
 from ultralytics import YOLO
 
 BASE_DIR = Path(__file__).resolve().parent
-MODELS_DIR = Path(os.getenv("AGROVISION_MODELS_DIR", BASE_DIR / "models"))
-CNN_PATH = Path(os.getenv("AGROVISION_CNN_PATH", MODELS_DIR / "modelo_folhas.keras"))
+MODELS_DIR = Path(os.getenv("AGROVISION_MODELS_DIR", BASE_DIR / "/home/delmar/Downloads/Delmar_AI/Demonstration/projeto-M2/AgroVisionAI_Modulo2_Final.ipynb"))
+CNN_PATH = Path(os.getenv("AGROVISION_CNN_PATH", MODELS_DIR / "/home/delmar/Downloads/data_folhas/PlantVillage"))
 CLASSES_PATH = Path(os.getenv("AGROVISION_CLASSES_PATH", MODELS_DIR / "classes.json"))
 MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", 10 * 1024 * 1024))
 
